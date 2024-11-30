@@ -1,5 +1,5 @@
 name: Build and Deploy Pipeline
-#Trigger will work only when the code is push to main branch
+#Trigger will work only when the code is pushed to the branch.
 on:
  push:
   branches:
@@ -7,20 +7,21 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code 
-      uses: actions/checkout@v3
-      
-    - name: Install pnpm
-        run: |
-          npm install -g pnpm  # Install pnpm globally
-          
-    - name: Install Dependencies
-      run: |
-         pnpm build
-       
-    - name: Build Next.js application
-      run: |
-         pnpm run build
-        
+   runs-on: ubuntu-latest
+   steps:
+      # Checkout Repo
+      - name: Checkout code 
+        uses: actions/checkout@v3
+      # Installing pnpm package 
+      - name: Install pnpm
+        uses: npm install -g pnpm
+      - name: Install dependencies
+        uses: actions/npm-install@v1
+      - name: Build project
+        uses: pnpm run build
+      - name: upload build-files
+        uses: actions/upload-artifacts@v2
+        with:
+           name: build files
+           path: ./build
+
