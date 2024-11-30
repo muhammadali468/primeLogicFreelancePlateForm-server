@@ -12,8 +12,10 @@ jobs:
     - name: Checkout code 
       uses: actions/checkout@v3
     - name: Install Dependencies
-      run: npm build
+      run: |
+         pnpm build
        
     - name: Build Next.js application
-      run: npm run build
+      run: |
+        pnpm run build
         
