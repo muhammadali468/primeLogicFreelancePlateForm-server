@@ -1,0 +1,19 @@
+name: Build and Deploy Pipeline
+#Trigger will work only when the code is push to main branch
+on:
+ push:
+  branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code 
+      uses: actions/checkout@v3
+    - name: Install Dependencies
+      run: |
+        npm build
+    - name: Build Next.js application
+      run: |
+        npm run build
