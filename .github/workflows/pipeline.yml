@@ -12,6 +12,8 @@ jobs:
       # Checkout Repo
       - name: Checkout code 
         uses: actions/checkout@v3
+      - name: Install npm
+        uses: sudo apt install -y nodejs npm
       # Installing pnpm package 
       - name: Install pnpm
         uses: npm install -g pnpm
