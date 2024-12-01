@@ -13,14 +13,14 @@ jobs:
       - name: Checkout code 
         uses: actions/checkout@v3
       - name: Install npm
-        uses: sudo apt install -y nodejs npm
+        run: sudo apt install -y nodejs npm
       # Installing pnpm package 
       - name: Install pnpm
-        uses: npm install -g pnpm
+        run: npm install -g pnpm
       - name: Install dependencies
         uses: actions/npm-install@v1
       - name: Build project
-        uses: pnpm run build
+        run: pnpm run build
       - name: upload build-files
         uses: actions/upload-artifacts@v2
         with:
