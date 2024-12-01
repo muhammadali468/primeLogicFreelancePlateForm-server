@@ -18,12 +18,7 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
       - name: Install dependencies
-        uses: actions/npm-install@v1
+        run: npm i
       - name: Build project
         run: pnpm run build
-      - name: upload build-files
-        uses: actions/upload-artifacts@v2
-        with:
-           name: build files
-           path: ./build
-
+     
