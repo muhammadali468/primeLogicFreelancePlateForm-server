@@ -12,15 +12,16 @@ jobs:
       # Checkout Repo
       - name: Checkout code 
         uses: actions/checkout@v3
-      - name: update npm
-        run: sudo apt update -y
-      - name: Install npm
-        run: sudo apt install -y nodejs npm
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+            cache: 'pnpm'
       # Installing pnpm package 
       - name: Install pnpm
         run: npm install -g pnpm
       - name: Install dependencies
-        run: npm i
+        run: pnpm install
       - name: Build project
         run: pnpm run build
      
