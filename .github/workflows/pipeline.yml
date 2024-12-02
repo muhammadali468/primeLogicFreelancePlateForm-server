@@ -24,4 +24,28 @@ jobs:
         run: pnpm install
       - name: Build project
         run: pnpm run build
+        
+deploy:
+  name: Deploy to Server
+  runs-on: ubuntu-latest
+  needs: build
+  steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Deploy Backend
+        run: |
+          ssh -o StrictHostKeyChecking=no deployerdev@69.48.206.67 << 'EOF'
+          cd /home/deployerdev/coding/projects/primelogic-solutions/backend/
+          git pull origin main
+          pnpm install
+          pnpm db:generate && pnpm db:push
+          pm2 reload all 
+          EOF
+
+
+
      
