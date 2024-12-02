@@ -32,19 +32,25 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - name: Deploy Backend
+      - name: Deployment part  
         run: |
-          ssh -o StrictHostKeyChecking=no deployerdev@69.48.206.67 << 'EOF'
-          cd /home/deployerdev/coding/projects/primelogic-solutions/backend/
-          git pull origin main
-          pnpm install
-          pnpm db:generate && pnpm db:push
-          pm2 reload all 
-          EOF
+         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
+         cd /home/deployerdev/coding/projects/primelogic-solutions/
+
+         # Pull latest changes
+         git pull origin main
+
+         # Install dependencies
+         pnpm install --frozen-lockfile
+
+         # Build the project
+         pnpm build
+
+         # Restart the service using PM2 or systemd
+         pm2 restart my-backend || pm2 start dist/src/server.js --name "my-backend"
+         pm2 save 
+         EOF
+
 
 
 
