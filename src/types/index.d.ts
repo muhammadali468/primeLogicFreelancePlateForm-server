@@ -92,8 +92,15 @@ export type TSUBSCRIBENEWSLETTER = {
   email: string;
   newsLetter: string;
 };
-export type TNAVIGATIONPAGE = {
-  data: object[];
+// export type TNAVIGATIONPAGE = {
+//   data: object[];
+// };
+
+export type TSERVICE = {
+  name: string;
+  subServiceTitle: string;
+  subServiceDescription: string;
+  serviceDetail: string;
 };
 
 export type TGETQUOTE = {

@@ -177,15 +177,34 @@ model Newsletter {
   createdAt DateTime @default(now())
 }
 
-model NavigationPages {
+model Service {
   id                   Int       @id @default(autoincrement())
-  navigationPageConfig Json[]
-  trashedBy            String?
-  trashedAt            DateTime?
-
-  @@index([trashedAt])
-  @@index([trashedBy])
+  name                  String    @unique
+  subServiceTitle                  String  @unique
+  subServiceDescription                  String
+  serviceDetail                  String
+  
 }
+
+model Industry {
+  id                   Int       @id @default(autoincrement())
+  name                  String   @unique
+  subIndustryTitle                  String?  @unique
+  subIndustryDescription                  String?
+  industryDetail                  String
+
+}
+
+model Technology {
+  id                   Int       @id @default(autoincrement())
+  name                  String   @unique
+  subTechnologyTitle                  String?  @unique
+  subTechnologyDescription                  String?
+  technologyDetail                  String
+
+}
+
+
 
 model GetQuote {
   id        Int       @id @default(autoincrement())
