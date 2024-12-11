@@ -1,16 +1,33 @@
 import { Router } from "express";
-import navigationPagesController from "../../controllers/navigationPagesController/navigationPagesController";
-// import authMiddleware from "../../middlewares/authMiddleware";
-import { validateDataMiddleware } from "../../middlewares/validationMiddleware";
-import { serviceSchema } from "../../validation/zod";
+// import navigationPagesController from "../../controllers/navigationPagesController/navigationPagesController";
+// // import authMiddleware from "../../middlewares/authMiddleware";
+// import { validateDataMiddleware } from "../../middlewares/validationMiddleware";
+// import { serviceSchema } from "../../validation/zod";
 
 export const navigationPagesRouter = Router();
 
-navigationPagesRouter.route("/createNavigationPage").post(
-  // authMiddleware.checkToken, authMiddleware.checkIfUserIAdminOrModerator,
-  validateDataMiddleware(serviceSchema),
-  navigationPagesController.createService
-);
+// navigationPagesRouter.route("/createNavigationPage").post(
+//   // authMiddleware.checkToken, authMiddleware.checkIfUserIAdminOrModerator,
+//   validateDataMiddleware(serviceSchema),
+//   navigationPagesController.createService
+// );
+
+// navigationPagesRouter.route("/updateNavigationPage").patch(
+//   // authMiddleware.checkToken, authMiddleware.checkIfUserIAdminOrModerator,
+//   // validateDataMiddleware(serviceSchema),
+//   navigationPagesController.updateService
+// );
+
+// navigationPagesRouter.route("/getSingleService").get(
+//   // authMiddleware.checkToken, authMiddleware.checkIfUserIAdminOrModerator,
+//   // validateDataMiddleware(serviceSchema),
+//   navigationPagesController.getSingleService
+// );
+// navigationPagesRouter.route("/getAllServices").get(
+//   // authMiddleware.checkToken, authMiddleware.checkIfUserIAdminOrModerator,
+//   // validateDataMiddleware(serviceSchema),
+//   navigationPagesController.getAllServices
+// );
 // navigationPagesRouter
 //   .route("/getSingleNavigationPage/:id")
 //   .get(authMiddleware.checkToken, authMiddleware.checkIfUserIAdminOrModerator, navigationPagesController.getSingleNavigationPage);

@@ -426,9 +426,9 @@ export const serviceSchema = z.object({
     .string({ message: "sub-service description is required!!" })
     .min(1, { message: "sub-service description is required!!" })
     .min(3, { message: "sub-service description must be at least 3 characters long." })
-    .max(650, { message: "sub-service description can be at most 450 characters long." }),
-  serviceDetail: z
-    .string({ message: "service detail is required!!" })
-    .min(1, { message: "service detail is required!!" })
-    .min(3, { message: "service detail must be at least 3 characters long." })
+    .max(650, { message: "sub-service description can be at most 450 characters long." })
+  // serviceDetail: z
+  //   .string({ message: "service detail is required!!" })
+  //   .min(1, { message: "service detail is required!!" })
+  //   .min(3, { message: "service detail must be at least 3 characters long." })
 });

@@ -96,11 +96,15 @@ export type TSUBSCRIBENEWSLETTER = {
 //   data: object[];
 // };
 
+export type TSERVICECATEGORY = {
+  name: string;
+};
 export type TSERVICE = {
   name: string;
-  subServiceTitle: string;
-  subServiceDescription: string;
-  serviceDetail: string;
+  categoryId: string;
+  name: string;
+  description: string;
+  detailPage: string;
 };
 
 export type TGETQUOTE = {
