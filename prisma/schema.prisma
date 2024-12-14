@@ -177,36 +177,25 @@ model Newsletter {
   createdAt DateTime @default(now())
 }
 
-
-
 model ServiceCategory {
-  id            String        @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String
   subcategories Service[] // One-to-Many relation with Subcategory
-  @@index([name,id]) // Composite index to enforce and speed up queries
+
+  @@index([name, id]) // Composite index to enforce and speed up queries
 }
 
 model Service {
-  id          String   @id @default(cuid())
+  id          String          @id @default(cuid())
   categoryId  String // Explicit index on categoryId for efficient lookups
   name        String
-  slug        String   @unique
+  slug        String          @unique
   description String
   category    ServiceCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   detailPage  String?
 
-  @@index([categoryId,name,slug]) // Composite index to enforce and speed up queries
+  @@index([categoryId, name, slug]) // Composite index to enforce and speed up queries
 }
-
-
-
-
-
-
-
-
-
-
 
 model Industry {
   id                     Int     @id @default(autoincrement())

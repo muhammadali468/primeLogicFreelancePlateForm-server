@@ -1,17 +1,26 @@
 import { Router } from "express";
-// import navigationPagesController from "../../controllers/navigationPagesController/navigationPagesController";
-// // import authMiddleware from "../../middlewares/authMiddleware";
-// import { validateDataMiddleware } from "../../middlewares/validationMiddleware";
-// import { serviceSchema } from "../../validation/zod";
+import navigationPagesController from "../../controllers/navigationPagesController/navigationPagesController";
+// import authMiddleware from "../../middlewares/authMiddleware";
+import { validateDataMiddleware } from "../../middlewares/validationMiddleware";
+import { createCategorySchema, serviceSchema } from "../../validation/zod";
 
 export const navigationPagesRouter = Router();
 
-// navigationPagesRouter.route("/createNavigationPage").post(
-//   // authMiddleware.checkToken, authMiddleware.checkIfUserIAdminOrModerator,
-//   validateDataMiddleware(serviceSchema),
-//   navigationPagesController.createService
-// );
+navigationPagesRouter.route("/createCategory").post(
+  // authMiddleware.checkToken, authMiddleware.checkIfUserIAdminOrModerator,
+  validateDataMiddleware(createCategorySchema),
+  navigationPagesController.createCategory
+);
 
+navigationPagesRouter.route("/updateService").patch(
+  // authMiddleware.checkToken, authMiddleware.checkIfUserIAdminOrModerator,
+  navigationPagesController.updateService
+);
+
+navigationPagesRouter.route("/fetchAllCategory").get(navigationPagesController.fetchAllCategory);
+navigationPagesRouter.route("/createService").post(validateDataMiddleware(serviceSchema), navigationPagesController.createService);
+navigationPagesRouter.route("/fetchAllServices").get(navigationPagesController.fetchAllServices);
+navigationPagesRouter.route("/fetchSingleServiceDetail/:slug").get(navigationPagesController.fetchSingleServiceDetail);
 // navigationPagesRouter.route("/updateNavigationPage").patch(
 //   // authMiddleware.checkToken, authMiddleware.checkIfUserIAdminOrModerator,
 //   // validateDataMiddleware(serviceSchema),

@@ -97,12 +97,15 @@ export type TSUBSCRIBENEWSLETTER = {
 // };
 
 export type TSERVICECATEGORY = {
+  id: string;
   name: string;
 };
 export type TSERVICE = {
+  id: string;
   name: string;
   categoryId: string;
   name: string;
+  slug: string;
   description: string;
   detailPage: string;
 };
